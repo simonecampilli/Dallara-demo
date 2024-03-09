@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettagli Dipendente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .details-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="details-container">
+            <h1 class="text-center">Dettagli Dipendente</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Nome:</strong> <span id="nome">{{ dipendente.nome }}</span></p>
+                    <p><strong>Cognome:</strong> <span id="cognome">{{ dipendente.cognome }}</span></p>
+                    <p><strong>Data di Nascita:</strong> <span id="data_nascita">{{ dipendente.data_nascita }}</span></p>
+                    <p><strong>Anzianità:</strong> <span id="anzianita">{{ dipendente.anzianita }}</span></p>
+                    <p><strong>Amministratore:</strong> <span id="amministratore">{% if dipendente.amministratore %}Sì{% else %}No{% endif %}</span></p>
+                    <p><strong>Accesso Area:</strong> <span id="accesso_area">{% if dipendente.accesso_area %}Sì{% else %}No{% endif %}</span></p>
+                    <p><strong>Tipo Lavoro:</strong> <span id="tipo_lavoro">{{ dipendente.tipo_lavoro }}</span></p>
+
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Altri Campi:</strong></p>
+                    <p id="altri_campi">{{ dipendente.altri_campi }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'modifica_dipendente' dipendente.pk %}">
+        <button type="submit" class="btn btn-primary" style="position: absolute; top: 400px; left: 500px;">Modifica</button>
+
+</a>
+
+    <script>
+        // Esempio di utilizzo di JavaScript per aggiungere interattività
+        document.getElementById('nome').addEventListener('click', function() {
+            alert('Hai cliccato sul nome del dipendente.');
+        });
+        document.getElementById('cognome').addEventListener('click', function() {
+            alert('Hai cliccato sul cognome del dipendente.');
+        });
+        // Aggiungi altri eventi e funzioni JavaScript secondo necessità
+    </script>
+</body>
+</html>

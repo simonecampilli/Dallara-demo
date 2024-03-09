@@ -1,0 +1,129 @@
+
+{% extends "htmls/layout.html" %}
+
+{% load static %}
+{% block body %}
+    <!--====== PRELOADER PART START ======-->
+<style>
+
+    .content {
+    margin-left: 250px; /* Centrare l'elemento orizzontalmente */
+          margin-right: auto;
+
+      padding: 20px 30px;
+      background-color: white;
+      position: relative;
+      border-radius: 20px;
+    }
+
+    .rounded-extra {
+      border-radius: 20px; /* Modifica il valore di border-radius per aumentare o diminuire l'arrotondamento */
+    }
+
+    .custom-title {
+     font-family: 'Montserrat', sans-serif;
+     color: #444444;
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom: 10px;
+   }
+
+   .custom-text {
+     font-family: 'Montserrat', sans-serif;
+     color: #white;
+     font-size: 20px;
+   }
+
+</style>
+    <div class="preloader">
+        <div class="loader_34">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--====== PRELOADER ENDS START ======-->
+
+    <!--====== HEADER PART START ======-->
+<div class="row">
+    <div class="col-xl-5 text-center">
+        <div class="custom-title">Dati Utente</div>
+        <div class="container mt-5">
+          <div class="card bg-primary text-white rounded-extra">
+            <div class="card-body">
+              <div class="d-flex justify-content-center mb-3">
+
+
+                <img src="{{ immagine_profilo }}" class="rounded-circle" alt="User Profile" style="width: 150px; height: 150px; alt="Immagine del profilo di {{ dipendente.nome }}">
+
+              </div>
+              <h5 class="card-title text-center">{{nome}} {{cognome}}</h5>
+                <p class="card-text custom-text">Username: {{username}}</p>
+                <hr class="bg-light">
+              <p class="card-text custom-text">Data di Nascita: {{data_nascita}}</p>
+                <hr class="bg-light">
+              <p class="card-text custom-text">Ruolo: {{tipo_lavoro}}</p>
+                <hr class="bg-light">
+              <p class="card-text custom-text">Anzianità: {{anzianita}}</p>
+                <hr class="bg-light">
+              <p class="card-text custom-text">Area di Lavoro: {{area_di_lavoro}}</p>
+              <!-- Aggiungi altre informazioni necessarie -->
+            </div>
+          </div>
+        </div>
+    </div>
+   <div class="col-xl-1"></div>
+        <div class="col-xl-5 text-center">
+            <div class="custom-title">Attestati</div>
+            <div class="container mt-5">
+                <div class="card bg-primary text-white rounded-extra">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for attestato in lista_attestati %}
+                            <li class="list-group-item bg-primary custom-text">{{ attestato.nome }}:<br>{{ attestato.descrizione }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="col-xl-1" ></div>
+    <br>
+<br>
+<br>
+    <a href="{% url 'modifica_dipendente' id_dipendente %}">
+    <button type="submit" class="btn btn-primary" style="position: absolute; top: 680px; left: 50px;">Modifica</button>
+
+</a>
+
+</div>
+
+    <!--====== jquery js ======-->
+    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js'%}"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="{% static  'assets/js/bootstrap.min.js'%}"></script>
+    <script src="{%  static 'assets/js/popper.min.js'%}"></script>
+
+    <!--====== Slick js ======-->
+    <script src="{% static 'assets/js/slick.min.js'%}"></script>
+
+
+    <!--====== WOW js ======-->
+    <script src="{% static 'assets/js/wow.min.js'%}"></script>
+
+    <!--====== Main js ======-->
+    <script src="{% static 'assets/js/main.js'%}"></script>
+{% endblock %}

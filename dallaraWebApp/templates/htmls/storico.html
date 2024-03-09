@@ -1,0 +1,113 @@
+{% extends "htmls/layout.html" %}
+{% load static %}
+{% block body %}
+<style>
+    .content {
+    margin-left: auto; /* Centrare l'elemento orizzontalmente */
+          margin-right: auto;
+      width: 600px;
+      padding: 20px 30px;
+      background-color: white;
+      position: relative;
+      border-radius: 6px;
+    }
+    .timeline {
+        list-style: none;
+        padding: 0;
+        position: relative;
+    }
+    .timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background-color: #007bff;
+        margin-left: -1px;
+    }
+    .timeline-item {
+        margin-bottom: 50px;
+        position: relative;
+    }
+    .timeline-item:last-child {
+        margin-bottom: 0;
+    }
+    .timeline-item:before,
+    .timeline-item:after {
+        content: '';
+        display: table;
+    }
+    .timeline-item:after {
+        clear: both;
+    }
+    .timeline-icon {
+        background-color: #007bff;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        position: absolute;
+        left: 50%;
+        margin-left: -25px;
+        z-index: 1;
+    }
+    .timeline-content {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 0;
+        margin-left: 70px; /* Aggiunto margine sinistro */
+
+}
+    .timeline-content h3 {
+        margin-top: 0;
+        max-width: 400px;
+        word-wrap: break-word;
+    }
+    .timeline-content p {
+        margin-bottom: 0;
+        max-width: 400px;
+        word-wrap: break-word;
+    }
+    .custom-title {
+     font-family: 'Montserrat', sans-serif;
+     color: #444444;
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom: 10px;
+   }
+   margine{
+     margin-top: 20px;
+     margin-left: 250px;
+   }
+   .paragrafodesc{
+       width:20px;
+   }
+</style>
+<div class="col-auto margine">
+
+    <div class="custom-title">Storico Incarichi</div>
+    <div class="content">
+        <ul class="timeline">
+            {% for lavoro in lavori %}
+            <li class="timeline-item">
+                <div class="timeline-icon">{{ forloop.counter }}</div>
+                <div class="timeline-content">
+                    <br><br>
+                    <h3>{{ lavoro.nome }} <br> -data: {{ lavoro.data }}</h3>
+                        <p >{{ lavoro.descrizione }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "htmls/layout.html" %}
+
+{% load static %}
+{% block body %}
+<style>
+    .custom-title {
+     font-family: 'Montserrat', sans-serif;
+     color: #444444;
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom: 10px;
+   }
+
+   .margine{
+     margin-top: 250px;
+     margin-left: 250px;
+   }
+</style>
+
+<div class="col-auto margine text-center">
+    <div class="custom-title">Accesso Negato</div>
+    <br>
+    <div class="custom-title">Questa zona richiede dei privilegi da amministratore.</div>
+</div>
+
+<script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js'%}"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="{% static  'assets/js/bootstrap.min.js'%}"></script>
+    <script src="{%  static 'assets/js/popper.min.js'%}"></script>
+
+    <!--====== Slick js ======-->
+    <script src="{% static 'assets/js/slick.min.js'%}"></script>
+
+
+    <!--====== WOW js ======-->
+    <script src="{% static 'assets/js/wow.min.js'%}"></script>
+
+    <!--====== Main js ======-->
+    <script src="{% static 'assets/js/main.js'%}"></script>
+{% endblock %}

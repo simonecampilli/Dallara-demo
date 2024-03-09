@@ -1,0 +1,106 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Django</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+        #chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #user_message {
+            width: calc(100% - 90px);
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        #response {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>-->
+{{% extends "htmls/layout.html" %}
+
+{% load static %}
+{% block body %}
+    <style>
+
+    .content {
+    margin-left: auto; /* Centrare l'elemento orizzontalmente */
+          margin-right: auto;
+      width: 600px;
+      padding: 20px 30px;
+      background-color: white;
+      position: relative;
+      border-radius: 6px;
+    }
+
+    .custom-title {
+     font-family: 'Montserrat', sans-serif;
+     color: #444444;
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom: 10px;
+   }
+
+    </style>
+    <div class="content" id="chat-container">
+        <div class="custom-title">Chatbot Django</div>
+        <div class="input-group">
+            <input type="text" id="user_message" class="form-control" placeholder="Inserisci il tuo messaggio...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="sendMessage()">Invia</button>
+            </div>
+        </div>
+        <div id="response"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function sendMessage() {
+            var userMessage = $('#user_message').val();
+            $.ajax({
+                type: 'POST',
+                url: '/chatbot/',
+                data: {
+                    'user_message': userMessage,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(data) {
+                    $('#response').html('<p>' + data.response + '</p>');
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        }
+    </script>
+{% endblock %}

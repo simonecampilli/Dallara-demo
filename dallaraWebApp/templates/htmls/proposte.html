@@ -1,0 +1,67 @@
+{% extends "htmls/layout.html" %}
+
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+<style>
+    .custom-title {
+     font-family: 'Montserrat', sans-serif;
+     color: #444444;
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom: 10px;
+   }
+
+   .margine{
+     margin-top: 20px;
+     margin-left: 250px;
+   }
+
+   .custom-text {
+     font-family: 'Montserrat', sans-serif;
+     color: white;
+     font-size: 20px;
+   }
+
+</style>
+
+<div class="col-auto margine">
+    <div class="text-center custom-title">Elenco Lavori</div>
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th class="bg-primary" scope="col"><div class="custom-text">Lavoro</div></th>
+                    <th class="bg-primary" scope="col"><div class="custom-text">Descrizione</div></th>
+                    <th class="bg-primary" scope="col"><div class="custom-text">Accetta / Rifiuta</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in job_list %}
+                <tr>
+                    <td>{{ job.nome }}</td>
+                    <td>{{ job.descrizione }}</td>
+                    <td>
+                        <button class="btn btn-success me-2 accetta" onclick="nascondiRiga(this)"><i class="fas fa-check"></i></button>
+                        <button class="btn btn-danger rifiuta" onclick="nascondiRiga(this)"><i class="fas fa-times"></i></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+function nascondiRiga(button) {
+    $(button).closest('tr').hide();
+}
+</script>
+{% endblock %}
+
+
